@@ -19,5 +19,7 @@ class UserSignal(Signal):
         # Deal with NaN value
         data.deal_exception_value(('AShareEODDerivativeIndicator', 's_val_pe_ttm'), 'constant', 0)
         # Get data after pre-process
-        pe = data.get_variable('AShareEODDerivativeIndicator', 's_val_pe_ttm')
-        return pe
+        pe_ltm = data.get_variable('AShareEODDerivativeIndicator', 's_val_pe_ttm')
+        trade_days = data.get_variable('O_price').index
+
+        return pe_ltm.loc[index]

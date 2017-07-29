@@ -15,11 +15,11 @@ class UserSignal(Signal):
     def dig(self, data):
     
         # Read data from Database
-        data.get_variable('AShareEODDerivativeIndicator', 's_val_pe_ttm')
+        data.get_variable('AShareEODDerivativeIndicator', 's_val_pb_new')
         # Deal with NaN value
-        data.deal_exception_value(('AShareEODDerivativeIndicator', 's_val_pe_ttm'), 'constant', 0)
+        data.deal_exception_value(('AShareEODDerivativeIndicator', 's_val_pb_new'), 'constant', 0)
         # Get data after pre-process
-        pe_ltm = data.get_variable('AShareEODDerivativeIndicator', 's_val_pe_ttm')
+        pb = data.get_variable('AShareEODDerivativeIndicator', 's_val_pb_new')
         trade_days = data.get_variable('O_price').index
 
-        return pe_ltm.loc[trade_days]
+        return pb.loc[trade_days]

@@ -21,7 +21,7 @@ class UserSignal(Signal):
         # Get data after pre-process
         pb = data.get_variable('AShareEODDerivativeIndicator', 's_val_pb_new')
         
-        bm = 1/pb
+        bp = 1/pb
         trade_days = data.get_variable('O_price').index
 
-        return bm.loc[trade_days]
+        return bp.loc[trade_days]

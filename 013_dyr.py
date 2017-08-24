@@ -14,14 +14,12 @@ class UserSignal(Signal):
 
     def dig(self, data):
     
-        import pandas as pd
-
         # Read data from Database
-        fin_indicator = data.get_variable('AShareFinancialIndicator', 's_fa_grossprofitmargin')
-        gpm = gpm.pivot(index='REPORT_PERIOD', columns='WIND_CODE', values='S_FA_GROSSPROFITMARGIN')
+        data.get_variable('AIndexValuation', 'dividend_yield')
+        # Deal with NaN value
+        data.deal_exception_value(('AIndexValuation', 'dividend_yield'), 'constant', 0)
+        # Get data after pre-process
+        dyr = data.get_variable('AIndexValuation', 'dividend_yield')
+        trade_days = data.get_variable('O_price').index
 
-        ref_table = data.get_variable('O_price')
-
-        gpm = gpm.loc[, ref_table.columns].reindex(ref_table.index, method='ffill').fillna(0)
-
-        return gpm
+        return dyr.loc[trade_days]

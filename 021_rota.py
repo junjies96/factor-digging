@@ -22,6 +22,6 @@ class UserSignal(Signal):
 
         ref_table = data.get_variable('O_price')
 
-        rota = rota.loc[, ref_table.columns].reindex(ref_table.index, method='ffill').fillna(0)
+        rota = rota.loc[:, ref_table.columns].reindex(ref_table.index, method='ffill').fillna(0)
 
         return rota

@@ -22,6 +22,6 @@ class UserSignal(Signal):
 
         ref_table = data.get_variable('O_price')
 
-        yoy_ebt = yoy_ebt.loc[, ref_table.columns].reindex(ref_table.index, method='ffill').fillna(0)
+        yoy_ebt = yoy_ebt.loc[:, ref_table.columns].reindex(ref_table.index, method='ffill').fillna(0)
 
         return yoy_ebt

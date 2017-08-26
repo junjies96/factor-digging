@@ -22,6 +22,6 @@ class UserSignal(Signal):
 
         ref_table = data.get_variable('O_price')
 
-        ebit_to_gr = ebit_to_gr.loc[, ref_table.columns].reindex(ref_table.index, method='ffill').fillna(0)
+        ebit_to_gr = ebit_to_gr.loc[:, ref_table.columns].reindex(ref_table.index, method='ffill').fillna(0)
 
         return ebit_to_gr

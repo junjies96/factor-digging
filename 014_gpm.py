@@ -22,6 +22,6 @@ class UserSignal(Signal):
 
         ref_table = data.get_variable('O_price')
 
-        gpm = gpm.loc[, ref_table.columns].reindex(ref_table.index, method='ffill').fillna(0)
+        gpm = gpm.loc[:, ref_table.columns].reindex(ref_table.index, method='ffill').fillna(0)
 
         return gpm

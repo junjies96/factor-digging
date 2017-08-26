@@ -22,6 +22,6 @@ class UserSignal(Signal):
 
         ref_table = data.get_variable('O_price')
 
-        assets_to_equity = assets_to_equity.loc[, ref_table.columns].reindex(ref_table.index, method='ffill').fillna(0)
+        assets_to_equity = assets_to_equity.loc[:, ref_table.columns].reindex(ref_table.index, method='ffill').fillna(0)
 
         return assets_to_equity

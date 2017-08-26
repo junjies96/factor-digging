@@ -22,6 +22,6 @@ class UserSignal(Signal):
 
         ref_table = data.get_variable('O_price')
 
-        ocf_to_or = ocf_to_or.loc[, ref_table.columns].reindex(ref_table.index, method='ffill').fillna(0)
+        ocf_to_or = ocf_to_or.loc[:, ref_table.columns].reindex(ref_table.index, method='ffill').fillna(0)
 
         return ocf_to_or
